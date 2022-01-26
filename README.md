@@ -1,2 +1,5 @@
 # test-game
-Test game for Learning Unity during Independent Study
+This is a test game for Learning Unity during Independent Study
+
+
+Everything included here is for learning purposes only. 
