@@ -51,8 +51,6 @@ public class Player : MonoBehaviour
 
         rigidBodyComponent.velocity = new Vector3(horizontalInput, rigidBodyComponent.velocity.y, verticalInput);
 
-    }
-
-    
+    }    
 
 }
