@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -308,8 +308,16 @@ PrefabInstance:
       value: TEST_CHARACTER2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 33ffd85268b99f44d865a72b1e5077f3, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 33ffd85268b99f44d865a72b1e5077f3, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 33ffd85268b99f44d865a72b1e5077f3, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33ffd85268b99f44d865a72b1e5077f3, type: 3}
@@ -599,7 +607,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1244475116}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundCheckTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -774,7 +782,7 @@ GameObject:
   - component: {fileID: 1831342372}
   - component: {fileID: 1831342371}
   - component: {fileID: 1831342376}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -804,7 +812,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831342370}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 865f4d76ba9bc3e4ba0ac20ffa6790ff, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -889,6 +897,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundCheckTransform: {fileID: 1244475116}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 55
 --- !u!1001 &1901028445
 PrefabInstance:
   m_ObjectHideFlags: 0

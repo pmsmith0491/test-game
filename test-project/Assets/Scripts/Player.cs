@@ -6,11 +6,12 @@ public class Player : MonoBehaviour
 {
 
     [SerializeField] private Transform groundCheckTransform = null;
+    [SerializeField] private LayerMask playerMask;
     private bool jumpKeyWasPressed;
     private float horizontalInput;
     private float verticalInput;
     private Rigidbody rigidBodyComponent;
-
+    
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +37,9 @@ public class Player : MonoBehaviour
     // FixedUpdate is called once every physic update
     private void FixedUpdate()
     {
+        rigidBodyComponent.velocity = new Vector3(horizontalInput, rigidBodyComponent.velocity.y, verticalInput);
 
-        if(Physics.OverlapSphere(groundCheckTransform.position, 0.1f).Length == 1)
+        if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
         {
             // ASSERT: No overlap with an object, we are in the air. 
             return;
@@ -49,7 +51,6 @@ public class Player : MonoBehaviour
             jumpKeyWasPressed = false;
         }
 
-        rigidBodyComponent.velocity = new Vector3(horizontalInput, rigidBodyComponent.velocity.y, verticalInput);
 
     }    
 
