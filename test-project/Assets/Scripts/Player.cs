@@ -5,12 +5,13 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    [SerializeField] private Transform groundCheckTransform = null;
+    //[SerializeField] private Transform groundCheckTransform = null;
     [SerializeField] private LayerMask playerMask;
-    private bool jumpKeyWasPressed;
+    [SerializeField] private float rotationSpeed;
+    [SerializeField] private float speed;
+    private Rigidbody rigidBodyComponent;
     private float horizontalInput;
     private float verticalInput;
-    private Rigidbody rigidBodyComponent;
     
 
     // Start is called before the first frame update
@@ -22,13 +23,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        // Check if space key is pressed down
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            jumpKeyWasPressed = true;
-        }
-
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
     }
@@ -37,27 +31,16 @@ public class Player : MonoBehaviour
     // FixedUpdate is called once every physic update
     private void FixedUpdate()
     {
-        rigidBodyComponent.velocity = new Vector3(horizontalInput, rigidBodyComponent.velocity.y, verticalInput);
 
+        rigidBodyComponent.velocity = new Vector3(horizontalInput, 0, verticalInput);
+        rigidBodyComponent.velocity.Normalize();
+        transform.Translate((rigidBodyComponent.velocity) * speed * Time.deltaTime, Space.World);
       
-
-        if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
+        if(rigidBodyComponent.velocity != Vector3.zero)
         {
-            // ASSERT: No overlap with an object, we are in the air. 
-            return;
+            Quaternion toRotation = Quaternion.LookRotation((-1) *rigidBodyComponent.velocity, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
-
-        if (rigidBodyComponent.velocity != Vector3.zero)
-        {
-            transform.forward = (-1) * new Vector3(horizontalInput, 0, verticalInput);
-        }
-
-        if (jumpKeyWasPressed)
-        {
-            rigidBodyComponent.AddForce(Vector3.up * 5, ForceMode.VelocityChange);
-            jumpKeyWasPressed = false;
-        }
-
 
     }    
 
