@@ -39,10 +39,17 @@ public class Player : MonoBehaviour
     {
         rigidBodyComponent.velocity = new Vector3(horizontalInput, rigidBodyComponent.velocity.y, verticalInput);
 
+      
+
         if (Physics.OverlapSphere(groundCheckTransform.position, 0.1f, playerMask).Length == 0)
         {
             // ASSERT: No overlap with an object, we are in the air. 
             return;
+        }
+
+        if (rigidBodyComponent.velocity != Vector3.zero)
+        {
+            transform.forward = (-1) * new Vector3(horizontalInput, 0, verticalInput);
         }
 
         if (jumpKeyWasPressed)
