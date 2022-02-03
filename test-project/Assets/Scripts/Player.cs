@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
       
         if(rigidBodyComponent.velocity != Vector3.zero)
         {
-            Quaternion toRotation = Quaternion.LookRotation((-1) *rigidBodyComponent.velocity, Vector3.up);
+            Quaternion toRotation = Quaternion.LookRotation((-1) * rigidBodyComponent.velocity, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
 
