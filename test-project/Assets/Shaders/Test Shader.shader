@@ -3,6 +3,7 @@ Shader "Custom/Test Shader"
    Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _BlurSize ("Blur Size", Range(0, 0.1)) = 0
     }
     SubShader
     {
@@ -16,6 +17,9 @@ Shader "Custom/Test Shader"
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+
+            sampler2D _MainTex;
+            float _BlurSize;
 
             struct appdata
             {
@@ -37,17 +41,17 @@ Shader "Custom/Test Shader"
                 return o;
             }
 
-            sampler2D _MainTex;
-
-            fixed4 frag (v2f i) : SV_Target
+          
+            fixed4 frag(v2f i) : SV_Target
             {
-                fixed4 col = tex2D(_MainTex, i.uv);
+                fixed4 col = 0;
                 
-                // set the red of the image to 100%
-                // col.r = 0.5;
-                
-                // invert the colors
-                // col.rgb = 1 - col.rgb;
+                for (float index = 0; index < 10; index++) {
+                    float2 uv = i.uv + float2(0, (index / 9 - 0.5) * _BlurSize);
+                    col += tex2D(_MainTex, uv);
+                }
+
+                col = col / 10;
 
                 return col;
             }
