@@ -3,8 +3,9 @@ Shader "Custom/Test Shader"
    Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        _BlurSize("Blur Size", Range(0, 0.1)) = 0
-        _SquareSize("Square Size", float) = 0
+        //_ResolutionWidth ("Resolution Width", float) = 1280
+        //_ResolutionHeight("Resolution Height", float) = 720
+        _PixelSize("Pixel Size", float) = 16
     }
     SubShader
     {
@@ -22,9 +23,9 @@ Shader "Custom/Test Shader"
             #include "UnityCG.cginc"
 
             sampler2D _MainTex;
-            float _SquareSize;
-            float pixelIndex = 0;
-            fixed4 AverageColor;
+            float _ResolutionWidth;
+            float _ResolutionHeight;
+            float _PixelSize;
 
             struct appdata
             {
@@ -46,35 +47,21 @@ Shader "Custom/Test Shader"
                 return o;
             }
 
+            
             fixed4 frag(v2f i) : SV_Target
             {
-                fixed4 col;
-                if (_SquareSize > 0) {
+                // instead of taking the average of the color, we scale the UV 
+                // of the fragment to encompass more pixels based on pixel size and 
+                // screen resolution
+                float CellSizeX = _PixelSize / _ScreenParams.x;
+                float CellSizeY = _PixelSize / _ScreenParams.y;
+                float ScaledX = CellSizeX * floor(i.uv.x / CellSizeX);
+                float ScaledY = CellSizeY * floor(i.uv.y / CellSizeY);
 
-                    if (pixelIndex == _SquareSize) 
-                    {
-                        pixelIndex = 0;
-                    }
+                float2 ScaledUV = float2(ScaledX, ScaledY);
 
-                    if (pixelIndex == 0) 
-                    {
-                        // calculate average color
-                        AverageColor = tex2D(_MainTex, i.uv);
-                    }
-                    else if (pixelIndex > 0 && pixelIndex < _SquareSize) 
-                    {
-
-                    }
-
-                    // set color to AverageColor
-
-                    col = AverageColor;
-                    pixelIndex++;
-
-                }
-                else {
-                    col = tex2D(_MainTex, i.uv);
-                }
+                fixed4 col = tex2D(_MainTex, ScaledUV);
+                
                 return col;
             }
             ENDCG

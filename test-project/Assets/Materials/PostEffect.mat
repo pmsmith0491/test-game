@@ -68,9 +68,16 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _PixelHeight: 32
+    - _PixelSize: 4
+    - _PixelWidth: 32
     - _Pixelation: 0
+    - _Resolution: 1080
+    - _ResolutionHeight: 720
+    - _ResolutionWidth: 1280
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _SquareSize: 3
     - _SrcBlend: 1
     - _UVSec: 0
     - _ZWrite: 1
