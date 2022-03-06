@@ -15,6 +15,12 @@ public class PostEffect : MonoBehaviour
         // send directly to the monitor. We are intercepting this so we can
         // do a bit more work, before passing it on. 
 
+            
         Graphics.Blit(source, destination, mat);
+/*        var temporaryTexture = RenderTexture.GetTemporary(source.width, source.height);
+        Graphics.Blit(source, temporaryTexture, mat, 0);
+        Graphics.Blit(temporaryTexture, destination, mat, 1);
+        RenderTexture.ReleaseTemporary(temporaryTexture);
+*/
     }
 }
