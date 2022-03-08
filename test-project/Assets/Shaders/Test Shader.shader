@@ -3,9 +3,7 @@ Shader "Custom/Test Shader"
    Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-        //_ResolutionWidth ("Resolution Width", float) = 1280
-        //_ResolutionHeight("Resolution Height", float) = 720
-        _PixelSize("Pixel Size", float) = 16
+        _BoxSize("Box Size", float) = 8
     }
     SubShader
     {
@@ -23,9 +21,9 @@ Shader "Custom/Test Shader"
             #include "UnityCG.cginc"
 
             sampler2D _MainTex;
-            float _ResolutionWidth;
-            float _ResolutionHeight;
-            float _PixelSize;
+            float _BoxSize;
+            fixed4 _AverageColor;
+            float _PixelIndexX = 1;
 
             struct appdata
             {
@@ -47,27 +45,32 @@ Shader "Custom/Test Shader"
                 return o;
             }
 
-            
+
+            //PRE: i is a well defined v2f.
+            //POST: returns color of leftmost bottommost pixel in cell of size 
+            //      (_BoxSize / Window SizeX, _BoxSize / Window Size Y) in normalized space between 0 and 1.   
             fixed4 frag(v2f i) : SV_Target
             {
-                // instead of taking the average of the color, we scale the UV 
-                // of the fragment to encompass more pixels based on pixel size and 
-                // screen resolution
-                float CellSizeX = _PixelSize / _ScreenParams.x;
-                float CellSizeY = _PixelSize / _ScreenParams.y;
-                float ScaledX = CellSizeX * floor(i.uv.x / CellSizeX);
-                float ScaledY = CellSizeY * floor(i.uv.y / CellSizeY);
+                float pixelSizeX = 1 / _ScreenParams.x; // size of pixel on x axis in normalized space
+                float pixelSizeY = 1 / _ScreenParams.y; // size of pixel on y axis in normalized space
+                float CellSizeX = _BoxSize * pixelSizeX; // "Upscaled" pixel x size in normalized space 
+                float CellSizeY = _BoxSize * pixelSizeY; // "Upscaled" pixel y size in normalized space
+                float bottomLeftPixelOfCellX = CellSizeX * floor(i.uv.x / CellSizeX); // u coordinate of pixel at bottom most leftmost part of square
+                float bottomLeftPixelOfCellY = CellSizeY * floor(i.uv.y / CellSizeY); // v coordinate of pixel at bottom most leftmost part of square
 
-                float2 ScaledUV = float2(ScaledX, ScaledY);
+                float2 bottomLeftPixelOfCell = float2(bottomLeftPixelOfCellX, bottomLeftPixelOfCellY);
 
-                fixed4 col = tex2D(_MainTex, ScaledUV);
+                fixed4 col = tex2D(_MainTex, bottomLeftPixelOfCell); // set color of pixel sampled from MainTex at position of bottom most left most pixel of the cell of size CellSizeX x CellSizeY
                 
                 return col;
             }
+
+            
             ENDCG
 
         }
-        
+
+    
 
         /* BOX BLUR FILTER (Set pixel to average of pixels around it)
         Pass
