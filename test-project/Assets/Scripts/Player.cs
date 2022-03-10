@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
 
-        animator.SetFloat("speed", rigidBodyComponent.velocity.magnitude);
+        animator.SetFloat("Speed", rigidBodyComponent.velocity.magnitude);
 
     }    
 
