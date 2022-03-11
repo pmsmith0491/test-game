@@ -34,7 +34,8 @@ public class Player : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftShift))
         {
             isRunning = true;
-        } else
+        } 
+        else
         {
             isRunning = false;
         }
@@ -44,8 +45,16 @@ public class Player : MonoBehaviour
     }
 
 
+    // PRE: isRunning is well defined.
+    // POST: speed = 2.0f iff isRunning and rigidBodyComponent.velocity.magnitude > 0.001. 0.2f otherwise. 
     private void RunningController()
     {
+
+        if(rigidBodyComponent.velocity.magnitude < 0.001)
+        {
+            isRunning = false;
+        }
+
         if(isRunning)
         {
             speed = 2.0f;
