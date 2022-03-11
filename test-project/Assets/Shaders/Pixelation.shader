@@ -3,6 +3,8 @@ Shader "Custom/Pixelation"
    Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
+        _ResolutionX("ResolutionX", float) = 512
+        _ResolutionY("ResolutionY", float) = 288
         _BoxSize("Box Size", float) = 8
     }
     SubShader
@@ -22,8 +24,8 @@ Shader "Custom/Pixelation"
 
             sampler2D _MainTex;
             float _BoxSize;
-            fixed4 _AverageColor;
-            float _PixelIndexX = 1;
+            float _ResolutionX;
+            float _ResolutionY;
 
             struct appdata
             {
@@ -51,8 +53,8 @@ Shader "Custom/Pixelation"
             //      (_BoxSize / Window SizeX, _BoxSize / Window Size Y) in normalized space between 0 and 1.   
             fixed4 frag(v2f i) : SV_Target
             {
-                float pixelSizeX = 1 / _ScreenParams.x; // size of pixel on x axis in normalized space
-                float pixelSizeY = 1 / _ScreenParams.y; // size of pixel on y axis in normalized space
+                float pixelSizeX = 1 / _ResolutionX;// size of pixel on x axis in normalized space
+                float pixelSizeY = 1 / _ResolutionY;// size of pixel on y axis in normalized space
                 float CellSizeX = _BoxSize * pixelSizeX; // "Upscaled" pixel x size in normalized space 
                 float CellSizeY = _BoxSize * pixelSizeY; // "Upscaled" pixel y size in normalized space
                 float bottomLeftPixelOfCellX = CellSizeX * floor(i.uv.x / CellSizeX); // u coordinate of pixel at bottom most leftmost part of square
