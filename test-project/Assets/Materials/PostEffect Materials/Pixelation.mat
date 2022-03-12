@@ -73,7 +73,7 @@ Material:
     - _PixelSize: 4
     - _PixelWidth: 32
     - _Pixelation: 0
-    - _Resolution: 64
+    - _Resolution: 9
     - _ResolutionHeight: 720
     - _ResolutionWidth: 1280
     - _ResolutionX: 144
