@@ -22,6 +22,7 @@ Shader "Custom/Toon"
 				#pragma fragment frag
 
 				#include "UnityCG.cginc"
+				#include "Lighting.cginc"
 
 				struct appdata
 				{
@@ -59,9 +60,10 @@ Shader "Custom/Toon"
 					float3 normal = normalize(i.worldNormal);
 					float NdotL = dot(_WorldSpaceLightPos0, normal);
 					float lightIntensity = NdotL > 0 ? 1 : 0; // if ndotl > 0, light intensity = 1, 0 otherwise
+					float4 light = lightIntensity * _LightColor0; // changes color of pixel based on light color
 					float4 sample = tex2D(_MainTex, i.uv);
 
-					return _Color * sample * (_AmbientColor + lightIntensity);
+					return _Color * sample * (_AmbientColor + light);
 				}
 				ENDCG
 			}
