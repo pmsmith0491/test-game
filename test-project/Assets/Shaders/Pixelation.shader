@@ -4,8 +4,8 @@ Shader "Custom/Pixelation"
     {
         _MainTex ("Texture", 2D) = "white" {}
         _ResolutionX("ResolutionX", float) = 512
-        _ResolutionY("ResolutionY", float) = 288
-        _BoxSize("Box Size", float) = 8
+        _ResolutionY("ResolutionY", float) = 288 
+        _BoxSize("Box Size", float) = 8   // we want our box size to be ResolutionX / (AspectRatioX * AspectRatioY)
     }
     SubShader
     {
