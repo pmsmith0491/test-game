@@ -1308,7 +1308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4853ec245bda0b4468bd045f0a16387f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: 2e03581fb8b3b064bbdfadc1565edaa1, type: 2}
+  mat: {fileID: 2100000, guid: fa3b820ce9fd0614a821d346e7abc4d1, type: 2}
 --- !u!114 &963194231
 MonoBehaviour:
   m_ObjectHideFlags: 0
