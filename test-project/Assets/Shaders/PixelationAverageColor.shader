@@ -72,9 +72,11 @@ Shader "Custom/PixelationAverageColor"
 
                     fixed4 averageColor = 0;
 
-                    for (float i = lowestXOfCell; i <= highestXOfCell; i += (pixelSizeX)) {
-                        for (float j = lowestYOfCell; j <= highestYOfCell; j += (pixelSizeY)) {
-                            averageColor += tex2D(_MainTex, float2(i, j));
+                    for (float x = 0; x < _BoxSize; x ++) {
+                        float u = lowestXOfCell + (x * pixelSizeX);
+                        for (float y = 0; y < _BoxSize; y++) {
+                            float v = lowestYOfCell + (y * pixelSizeY);
+                            averageColor += tex2D(_MainTex, float2(u, v));
                         }
                     }
 
