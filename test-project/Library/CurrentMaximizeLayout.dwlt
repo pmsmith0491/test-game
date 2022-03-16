@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 707, y: 521}
   m_MaxSize: {x: 18002, y: 14021}
   vertical: 0
-  controlID: 2170
+  controlID: 1286
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -139,7 +139,7 @@ MonoBehaviour:
   m_MinSize: {x: 230, y: 471}
   m_MaxSize: {x: 10000, y: 14021}
   vertical: 1
-  controlID: 2171
+  controlID: 1265
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -284,22 +284,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Animator Controllers
+    - Assets/Materials/Character Materials/Knight
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Animator Controllers
+  - Assets/Materials/Character Materials/Knight
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\Unity Projects\test project\test-game\test-project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 8e440000
-    m_LastClickedID: 17550
-    m_ExpandedIDs: 000000008a44000000ca9a3b
+    m_SelectedIDs: b0440000
+    m_LastClickedID: 17584
+    m_ExpandedIDs: 0000000090440000924400009844000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -315,7 +315,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 13}
+      m_ClientGUIView: {fileID: 6}
     m_SearchString: 
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
@@ -327,7 +327,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000008a44000000ca9a3b
+    m_ExpandedIDs: 00000000904400009244000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -352,8 +352,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: b2420000
-    m_LastClickedInstanceID: 17074
+    m_SelectedInstanceIDs: ca430000
+    m_LastClickedInstanceID: 17354
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000b4160000aa160000c8420000ba42000076440000e2420000c216000084de000000000000ee420000
     m_RenameOverlay:
@@ -408,7 +408,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 521}
   m_MaxSize: {x: 4002, y: 12021}
   vertical: 1
-  controlID: 2114
+  controlID: 1229
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -559,9 +559,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.5358826, y: 0.38419533, z: 1.8622341}
+    m_Target: {x: -0.92100877, y: -0.96840966, z: 1.3760763}
     speed: 2
-    m_Value: {x: -0.5358826, y: 0.38419533, z: 1.8622341}
+    m_Value: {x: -0.92100877, y: -0.96840966, z: 1.3760763}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -608,13 +608,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.34591565, y: 0.024452657, z: -0.0090973005, w: -0.93795097}
+    m_Target: {x: -0.6307596, y: -0.07489853, z: 0.06126097, w: -0.76998067}
     speed: 2
-    m_Value: {x: -0.34590003, y: 0.024451552, z: -0.00909689, w: -0.9379086}
+    m_Value: {x: -0.63073105, y: -0.07489514, z: 0.061258193, w: -0.7699458}
   m_Size:
-    m_Target: 3.8725593
+    m_Target: 3.92744
     speed: 2
-    m_Value: 3.8725593
+    m_Value: 3.92744
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -747,7 +747,7 @@ MonoBehaviour:
     m_CachedPref: 183
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: 17074
+  m_LastInspectedObjectInstanceID: 17354
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_LockTracker:

@@ -62,7 +62,11 @@ Shader "Custom/Pixelation"
 
                 float2 bottomLeftPixelOfCell = float2(bottomLeftPixelOfCellX, bottomLeftPixelOfCellY);
 
-                fixed4 col = tex2D(_MainTex, bottomLeftPixelOfCell); // set color of pixel sampled from MainTex at position of bottom most left most pixel of the cell of size CellSizeX x CellSizeY
+                float2 topRightPixel = float2(CellSizeX * ceil(i.uv.x/CellSizeX), CellSizeY * ceil(i.uv.y/CellSizeY));
+
+                float2 middlePixel = float2(bottomLeftPixelOfCellX + (CellSizeX * 0.5), bottomLeftPixelOfCellY + (CellSizeY * 0.5));
+
+                fixed4 col = tex2D(_MainTex, topRightPixel); // set color of pixel sampled from MainTex at position of bottom most left most pixel of the cell of size CellSizeX x CellSizeY
                 
                 return col;
             }
